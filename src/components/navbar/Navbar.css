@@ -1,3 +1,81 @@
-h2{
-    color: blueviolet;
+.nav-main{
+    width: 100vw;
+    height: 10vh;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+
+.nav-main div{
+    /* border: 2px solid red; */
+    width: 30vw;
+    height: 20px;
+}
+
+.nav-left{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.nav-left img{
+    width: 35px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.nav-left h4{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.nav-center{
+    display: flex;
+    align-items: center;
+}
+
+.nav-center input{
+    width: 20vw;
+    height: 20px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 10px 0 0 10px;
+    padding: 4px;
+    padding-left: 10px;
+}
+
+.nav-center button{
+    border: 1px solid black;
+    outline: none;
+    height: 30px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+.nav-right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 25px;
+}
+
+.nav-right img{
+    cursor: pointer;
+}
+
+#profile-img{
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    margin-right: 30px;
+    border-radius: 50%;
+}
+
+#video-icon{
+    width: 40px;
 }
