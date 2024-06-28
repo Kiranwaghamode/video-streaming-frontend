@@ -1,0 +1,83 @@
+.menu-main{
+    width: 22vw;
+    height: 90vh;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.sub-menu{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    /* border: 2px solid red; */
+    margin-left: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.sub-menu:hover{
+    background-color: rgba(238, 238, 238, 0.808);
+    .sub-menu-span{
+        background-color: rgba(238, 238, 238, 0.808);
+
+    }
+}
+
+#head-you{
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px;
+    margin-bottom: 30px;
+}
+
+
+.sub-menu img{
+    border-radius: 50%;
+    width: 30px;
+    object-fit: cover;
+}
+
+#subscription-span{
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px;
+}
+
+.subscription-div{
+    width: 100%;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 10px;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.subscription-div img{
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#subscription-div-span{
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.subscription-div:hover{
+    background-color: rgba(238, 238, 238, 0.808);
+    cursor: pointer;
+    #subscription-div-span{
+    background-color: rgba(238, 238, 238, 0.808);
+        
+    }
+}
