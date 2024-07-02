@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './Home.css'
 import Navbar from '../../components/navbar/Navbar'
 import Menu from '../../components/menubar/Menu'
@@ -7,11 +7,21 @@ import Register from '../../components/register/Register'
 import { UserContext } from '../../context/userContext'
 import Login from '../../components/login/Login'
 import Password from '../../components/changepassword/Password'
+import Playlist from '../../components/playlist/Playlist'
 
 
 const Home = () => {
   
   const { loggedIn, setloggedIn } = useContext(UserContext)
+
+  // const loggedIn = false;
+
+  const [showRegister, setShowRegister] = useState(true)
+  const [close, setClose] = useState(false)
+
+  const toggleModal = () =>{
+    setShowRegister(!showRegister)
+  }
 
   
 
@@ -23,6 +33,13 @@ const Home = () => {
     <div className="home-main">
     <Menu/>
     <Content/>
+    {/* <Playlist/> */}
+
+    {
+      showRegister ? ( <Register toggleModal={toggleModal}/>): <Login toggleModal={toggleModal}/>
+    }
+
+
     {/* { !loggedIn && <Register/> } */}
     {/* <Login/> */}
     {/* <Password/> */}

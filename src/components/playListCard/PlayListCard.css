@@ -1,0 +1,43 @@
+.playlist-box{
+    width: 220px;
+    cursor: pointer;
+    height: 250px;
+}
+
+.playlist-box h5{
+    margin-top: 220px;
+}
+
+
+.img-container img{
+    width: 220px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.img-container{
+    position: relative;
+}
+
+.playlist-image{
+    position: absolute;
+
+}
+
+
+#img1{
+    z-index: 0;
+    transform: translate(0,0);
+
+}
+
+#img2{
+    z-index: 1;
+    transform: translate(10px, 10px);
+}
+
+#img3{
+    z-index: 3;
+    transform: translate(20px, 20px);
+}

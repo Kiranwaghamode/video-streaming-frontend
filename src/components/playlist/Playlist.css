@@ -1,0 +1,10 @@
+.main-playlist{
+    width: 100%;
+    height: 83vh;
+    overflow-y: scroll;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 20px;
+}
