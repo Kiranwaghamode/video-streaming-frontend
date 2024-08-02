@@ -22,6 +22,15 @@
     padding: 5px;
 }
 
+.sub-menu-span{
+    text-decoration: none;
+    color: black;
+}
+
+.Linkto{
+    text-decoration: none;
+}
+
 .sub-menu:hover{
     background-color: rgba(238, 238, 238, 0.808);
     .sub-menu-span{

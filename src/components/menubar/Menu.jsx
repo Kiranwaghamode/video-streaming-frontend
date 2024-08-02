@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Menu.css'
+import { Link } from 'react-router-dom'
+import { UserContext } from '../../context/userContext'
 
 const Menu = () => {
+
+    const { currentUser } = useContext(UserContext)
+
+
   return (
     <>
  <div className="menu-main">
     <div id="you">
     <span id='head-you'>You</span>
+    <Link to={`/user-channel/${currentUser.username}`} className='Linkto'>
     <div className="sub-menu">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&s" alt="" />
         <span className='sub-menu-span'>Your Channel</span>
     </div>
+    </Link>
     <div className="sub-menu">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToN7bD4l-dNiWcyNW1QKGyIWwmkmFME_xKbg&s" alt="" />
         <span className='sub-menu-span'>History</span>

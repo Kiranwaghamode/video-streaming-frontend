@@ -1,0 +1,69 @@
+/* src/App.css */
+.App {
+    text-align: center;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  #coverImage {
+    margin: 10px 0;
+    display: block;
+    width: 100%;
+  }
+  
+  #coverImg-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #coverImg-button:hover {
+    background-color: #0056b3;
+  }
+  .cover-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .cover-close:hover,
+  .cover-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .cover-disable{
+    background-color: black;
+  }
+  
+  @media (max-width: 600px) {
+    .modal-content {
+      width: 95%;
+    }
+  }
+  

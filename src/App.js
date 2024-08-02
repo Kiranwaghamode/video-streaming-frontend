@@ -3,6 +3,7 @@ import Home from './pages/home/Home';
 import UserProfile from './pages/userProfile/UserProfile';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Video from './pages/video/Video';
+import Channel from './pages/channel/Channel';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/user-profile" element={<UserProfile/>}/>
           <Route exact path="/video/:videoId" element={<Video/>}/>
+          <Route exact path="/user-channel/:username" element={ <Channel/> }/>
       </Routes>
     </BrowserRouter>
     

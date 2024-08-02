@@ -16,12 +16,10 @@ const Home = () => {
 
   // const loggedIn = false;
 
-  const [showRegister, setShowRegister] = useState(true)
+ 
   const [close, setClose] = useState(false)
 
-  const toggleModal = () =>{
-    setShowRegister(!showRegister)
-  }
+  
 
   
 
@@ -35,15 +33,8 @@ const Home = () => {
     <Content/>
     {/* <Playlist/> */}
 
-    {
-      showRegister ? ( <Register toggleModal={toggleModal}/>): <Login toggleModal={toggleModal}/>
-    }
-
-
-    {/* { !loggedIn && <Register/> } */}
-    {/* <Login/> */}
-    {/* <Password/> */}
-
+    {/* {
+    } */}
     </div>
     </>
   )

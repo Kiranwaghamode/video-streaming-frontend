@@ -3,9 +3,9 @@ import './Register.css'
 import { UserContext } from '../../context/userContext'
 import axios from 'axios'
 
-const Register = ({toggleModal}) => {
+const Register = ({toggleSignUp}) => {
 
-  const { setloggedIn } = useContext(UserContext)
+  const { setloggedIn, currentUser, setCurrentUser } = useContext(UserContext)
 
   const [name, setname] = useState('')
   const [email, setemail] = useState('')
@@ -13,7 +13,7 @@ const Register = ({toggleModal}) => {
   const [coverImage, setcoverImage] = useState(null)
   const [password , setPassword] = useState('')
   const [username, setUsername] = useState('')
-
+  const [isLoading, setisLoading] = useState(false)
 
 
 
@@ -29,17 +29,45 @@ const Register = ({toggleModal}) => {
     formData.append('password', password);
     formData.append('coverImage', coverImage);
 
+
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  }
+
+
+
     try {
-        const response = await axios.post('http://localhost:8000/api/v1/users/register', formData, {
+      setisLoading(true)
+        const response = await axios.post(`${process.env.REACT_APP_API_URI}/users/register`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
 
         console.log('Success:', response.data);
+
+      // localStorage.setItem('currentUser', JSON.stringify(response.data.data));
+      // const user = response.data.data
+      // setCurrentUser(user);   
+      // console.log(currentUser)   
+      // const accessToken = response.data.data.accessToken;
+      // const refreshToken = response.data.data.refreshToken;
+
+      // // document.cookie = `accessToken=${accessToken}; path=/`;
+      // // document.cookie = `refreshToken=${refreshToken}; path=/`;
+      // setCookie('accessToken', accessToken, 7);  
+      // setCookie('refreshToken', refreshToken, 7); 
+
         // Handle success (e.g., display a message to the user)
+        setloggedIn(true)
+        toggleSignUp()
+        setisLoading(false)
     } catch (error) {
         console.error('Error:', error);
+        setisLoading(false)
         // Handle error (e.g., display an error message)
     }
 };
@@ -50,7 +78,7 @@ const Register = ({toggleModal}) => {
     <>
     <div className="modal">
       <div className="modal-content">
-        <span className="close" >&times;</span>
+        <span className="close" onClick={toggleSignUp} >&times;</span>
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -123,9 +151,8 @@ const Register = ({toggleModal}) => {
               onChange={(e)=> setcoverImage(e.target.files[0])}
             />
           </div>
-          <button type="submit" id='register-button'>Register</button>
+          <button type="submit" disabled={false} id='register-button'>Register</button>
         </form>
-        <button  className="login-button" onClick={toggleModal}>Already have an account? Log in</button>
       </div>
     </div>
     </>
