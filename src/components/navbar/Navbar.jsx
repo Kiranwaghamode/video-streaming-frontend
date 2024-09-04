@@ -6,6 +6,7 @@ import Login from '../login/Login'
 import Register from '../register/Register'
 import Logout from '../logout/Logout'
 import axios from 'axios'
+import VideoUpload from '../Videoupload/VideoUpload'
 const Navbar = () => {
 
 
@@ -23,9 +24,19 @@ const Navbar = () => {
   const [isClosed, setisClosed] = useState(false)
   const [signIn, setsignIn] = useState(false)
   const [signUp, setsignUp] = useState(false)
-
+  const [isuploadModalOpen, setisuploadModalOpen] = useState(false)
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const showUploadModal = () =>{
+    setisuploadModalOpen(true)
+  }
+
+  const closeUploadModal = () =>{
+    setisuploadModalOpen(false)
+  }
+
 
   const showErrorModal = () => {
     setIsModalOpen(true);
@@ -94,12 +105,19 @@ const Navbar = () => {
         <button>Search</button>
     </div>
     <div className="nav-right">
-        {authenticated ? <i class="fa-solid fa-power-off" id='logout' onClick={handleLogoutClick}></i> : ''}
         
-        { !authenticated ? <i class="fa-solid fa-user-plus" id='register-logo' onClick={toggleSignUp}></i>: ''}
-        { !authenticated ? <i class="fa-solid fa-right-to-bracket" id='login-logo' onClick={toggleSignIn}></i> : '' }
+        {authenticated ? <img src="./assets/logout.png" id='logout'  onClick={handleLogoutClick} alt="" />: ''}
+        
+        
+        { !authenticated ? <img src="./assets/register.png" id="register-logo" alt="" onClick={toggleSignUp} />: ''}
 
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLtgftLHQuwp0CIxSvwqcRFgq3kjfuTA_APg&s" alt="" id='video-icon' />
+        
+        { !authenticated ? <img src="./assets/enter.png" onClick={toggleSignIn} id='login-logo' alt="" /> : '' }
+
+        {
+          authenticated ? <img src="./assets/upload.png" alt="" id='video-icon' onClick={showUploadModal} /> : ""
+        }
+        
 
         <img src={ authenticated ? currentUser.avatar : '/assets/user.png'} alt="" id='profile-img' onClick={()=> {navigate('/user-profile')}}/>
 
@@ -127,6 +145,10 @@ const Navbar = () => {
           </div>
         </div>
     )}
+
+    {
+      isuploadModalOpen && <VideoUpload closeModal={closeUploadModal}/>
+    }
     
     
     </>

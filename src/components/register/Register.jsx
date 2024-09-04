@@ -49,19 +49,6 @@ const Register = ({toggleSignUp}) => {
 
         console.log('Success:', response.data);
 
-      // localStorage.setItem('currentUser', JSON.stringify(response.data.data));
-      // const user = response.data.data
-      // setCurrentUser(user);   
-      // console.log(currentUser)   
-      // const accessToken = response.data.data.accessToken;
-      // const refreshToken = response.data.data.refreshToken;
-
-      // // document.cookie = `accessToken=${accessToken}; path=/`;
-      // // document.cookie = `refreshToken=${refreshToken}; path=/`;
-      // setCookie('accessToken', accessToken, 7);  
-      // setCookie('refreshToken', refreshToken, 7); 
-
-        // Handle success (e.g., display a message to the user)
         setloggedIn(true)
         toggleSignUp()
         setisLoading(false)

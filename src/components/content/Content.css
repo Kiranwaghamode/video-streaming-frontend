@@ -6,3 +6,8 @@
     margin-right: 0;
     overflow-y: scroll;
 }
+
+#video-link{
+    text-decoration: none;
+    color: black;
+}

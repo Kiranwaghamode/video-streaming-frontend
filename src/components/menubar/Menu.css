@@ -50,7 +50,11 @@
 .sub-menu img{
     border-radius: 50%;
     width: 30px;
-    object-fit: cover;
+    object-fit: contain;
+}
+
+#twitter{
+    border-radius: 0;
 }
 
 #subscription-span{

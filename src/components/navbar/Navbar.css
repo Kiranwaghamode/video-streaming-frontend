@@ -65,17 +65,21 @@
 #register-logo{
     font-size: 25px;
     cursor: pointer;
+    width: 35px;
 }
 
 #logout{
     font-size: 25px;
    font-weight: 800;
     cursor: pointer;
+    width: 25px;
+    object-fit: cover;
 }
 
 #login-logo{
     font-size: 28px;
     cursor: pointer;
+    width: 30px;
 }
 
 .nav-right{

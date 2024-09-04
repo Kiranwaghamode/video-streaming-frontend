@@ -4,6 +4,7 @@ import UserProfile from './pages/userProfile/UserProfile';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Video from './pages/video/Video';
 import Channel from './pages/channel/Channel';
+import Twitter from './components/twitter/Twitter';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route exact path="/user-profile" element={<UserProfile/>}/>
           <Route exact path="/video/:videoId" element={<Video/>}/>
           <Route exact path="/user-channel/:username" element={ <Channel/> }/>
+          <Route exact path="/tweets" element={ <Twitter/> }/>
       </Routes>
     </BrowserRouter>
     

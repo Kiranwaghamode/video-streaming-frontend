@@ -7,8 +7,8 @@ const Videocard = ({title, channel, imgUrl, avatar}) => {
         <img src={imgUrl} id='thumbnail' alt="" />
         <h5>{title}</h5>
        <div className="card-channel">
-       <img src={avatar} alt="" />
-       <span>{channel}</span>
+       {/* <img src={avatar} alt="" />
+       <span>{channel}</span> */}
        </div>
     </div>
     
