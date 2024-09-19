@@ -11,6 +11,14 @@
   .tweet-content {
     margin-bottom: 12px;
   }
+
+  #tweet-edit input{
+    width: 200px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 16px;
+
+  }
   
   .tweet-actions {
     display: flex;

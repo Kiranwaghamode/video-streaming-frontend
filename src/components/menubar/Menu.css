@@ -1,3 +1,31 @@
+:root {
+    --back-color:  #ADBBDA;
+    --secondary-color: #3D52A0;
+    --third-color: #8692c4;
+  }
+
+.menu-options{
+    margin-left: 5px;
+    margin-top: 10px;
+    height: 30px;
+    display: none;
+
+}
+
+.menu-line{
+    width: 20px;
+    border: 2px solid var(--secondary-color);
+    margin: 5px 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+.first{
+    transform: rotate(45deg) translate(1px, 0);
+}
+.second{
+    transform: rotate(-45deg) translate(6px, -5px);
+}
+
 .menu-main{
     width: 22vw;
     height: 90vh;
@@ -5,10 +33,18 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
+    z-index: 0;
     margin-top: 20px;
+    /* transition: all 0.5; */
+}
+
+.show-menu{
+    display: none;
 }
 
 .sub-menu{
+    margin-top: 5px;
     width: 100%;
     height: 30px;
     display: flex;
@@ -22,19 +58,29 @@
     padding: 5px;
 }
 
+.click{
+    pointer-events: none;
+
+}
+
 .sub-menu-span{
     text-decoration: none;
-    color: black;
+    font-weight: 600;
 }
 
 .Linkto{
     text-decoration: none;
 }
 
+
+
 .sub-menu:hover{
-    background-color: rgba(238, 238, 238, 0.808);
+    /* background-color: rgba(238, 238, 238, 0.808); */
+    background-color: var(--back-color);
     .sub-menu-span{
-        background-color: rgba(238, 238, 238, 0.808);
+        /* background-color: rgba(238, 238, 238, 0.808); */
+    background-color: var(--back-color);
+
 
     }
 }
@@ -44,18 +90,28 @@
     font-weight: 400;
     margin: 10px;
     margin-bottom: 30px;
+    color: var(--secondary-color);
 }
+
+
 
 
 .sub-menu img{
     border-radius: 50%;
     width: 30px;
     object-fit: contain;
+    border: 2px solid var(--secondary-color);
+    padding: 2px;
 }
 
 #twitter{
     border-radius: 0;
 }
+
+.selected{
+    border: 1px solid black;
+}
+
 
 #subscription-span{
     font-size: 20px;
@@ -75,6 +131,8 @@
     border-radius: 10px;
 }
 
+
+
 .subscription-div img{
     width: 30px;
     object-fit: cover;
@@ -93,4 +151,30 @@
     background-color: rgba(238, 238, 238, 0.808);
         
     }
+}
+
+@media (max-width: 480px){
+    .menu-main{
+        margin-top: -5px;
+        margin-left: 10px;
+        width: 50vw;
+        height: 20vh;
+        border-radius: 20px;
+        z-index: 0;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        transition: all 1s ease-in-out;
+    }
+
+    .sub-menu{
+        width: 88%;
+    }
+    .hide-menu{
+        margin-left: -350px;
+    }
+    .menu-options{
+        display: inline-block;
+    }
+   
+
+    
 }

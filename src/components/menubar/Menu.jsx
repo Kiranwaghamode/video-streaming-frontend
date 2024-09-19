@@ -1,45 +1,46 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Menu.css'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/userContext'
+import Cookies from 'js-cookie'
+import axios from 'axios'
 
 const Menu = () => {
 
-    const { currentUser } = useContext(UserContext)
+    const { currentUser, showWatchHistory, setshowWatchHistory,authenticated } = useContext(UserContext)
 
+    const [showMenu, setshowMenu] = useState(false)
+
+
+
+    
 
   return (
     <>
- <div className="menu-main">
+    <div className="menu-options hide-option" onClick={()=> setshowMenu(!showMenu)}>
+        <div className={`menu-line ${showMenu ? 'first': ''}  `}></div>
+        <div className={`menu-line ${showMenu ? 'show-menu': ''} `}></div>
+        <div className={`menu-line  ${showMenu ? 'second': ''} `}></div>
+    </div>
+ <div className={`menu-main ${!showMenu ? 'hide-menu': ''} `}>
     <div id="you">
     <span id='head-you'>You</span>
-    <Link to={`/user-channel/${currentUser.username}`} className='Linkto'>
+    <Link to={`/user-channel/${currentUser.username}`} className={`Linkto ${!authenticated ? 'click': ''}`} >
     <div className="sub-menu">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&s" alt="" />
         <span className='sub-menu-span'>Your Channel</span>
     </div>
     </Link>
-    <div className="sub-menu">
+    <div className={`sub-menu ${showWatchHistory ? 'selected': ''} ${!authenticated ? 'click' : ''}`} onClick={()=> setshowWatchHistory(!showWatchHistory)}>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToN7bD4l-dNiWcyNW1QKGyIWwmkmFME_xKbg&s" alt="" />
         <span className='sub-menu-span'>History</span>
     </div>
-    <div className="sub-menu">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2NwHv7tcPBDXa9oEfX1nkkwCtGpBGTasTLA&s" alt="" />
-        <span className='sub-menu-span'>Playlists</span>
-    </div>
-    <div className="sub-menu">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/000/422/468/small/Multimedia__28107_29.jpg" alt="" />
-        <span className='sub-menu-span'>Liked Videos</span>
-    </div>
-    <div className="sub-menu">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT95wGMAPVPIfQ0mwQ-2PiQXmztybJ_GovLsT-rpvv7BUfvgugJ0DHpsoslK4tdXmD6yu8&usqp=CAU" alt="" />
-        <span className='sub-menu-span'>Watch Later</span>
-    </div>
+    
     
     
     </div>
 
-    <div id="subscriptions">
+    {/* <div id="subscriptions">
         <span id='subscription-span'>Subscriptions</span>
         <div className="subscription-div">
             <img src="https://yt3.googleusercontent.com/oQ2NQMuq-9IS6_MZdsGXa0RWecaACremA01Z7jo-YpoEF1H6PyUF8PZzXkV10OYwSP3UMJDeTg=s900-c-k-c0x00ffffff-no-rj" alt="" />
@@ -53,7 +54,7 @@ const Menu = () => {
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTC41flzoZC1EQy1ms3tEysWhuIJ_2EfXw3A&s" alt="" />
             <span id='subscription-div-span'>Mr Beast</span>
         </div>
-    </div>
+    </div> */}
 
  </div>
     

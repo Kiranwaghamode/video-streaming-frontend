@@ -96,7 +96,8 @@ const Login = ({toggleSignIn, showErrorModal}) => {
               onChange={(e)=>{setPassword(e.target.value)}}
             />
           </div>
-          <button type="submit" disabled={isLoading ? true : false}   className={`login-button ${isLoading ? 'login-loading' : ''}`}>Login</button>
+          <button type="submit" disabled={isLoading ? true : false}   className={`login-button ${isLoading ? 'login-loading' : ''}`}>{ isLoading ?<><i class="fa fa-spin fa-solid fa-rotate-right"></i>      
+          Loading</> : "Login"}</button>
         </form>
       </div>
     </div>

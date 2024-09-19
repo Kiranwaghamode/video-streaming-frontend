@@ -138,7 +138,8 @@ const Register = ({toggleSignUp}) => {
               onChange={(e)=> setcoverImage(e.target.files[0])}
             />
           </div>
-          <button type="submit" disabled={false} id='register-button'>Register</button>
+          <button type="submit" disabled={false} id='register-button'>{ isLoading ? <><i class="fa fa-spin fa-solid fa-rotate-right"></i>      
+          Loading</> :'Register'}</button>
         </form>
       </div>
     </div>

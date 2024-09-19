@@ -16,7 +16,8 @@ const Navbar = () => {
     authenticated, 
     setAuthenticated,
     setloggedIn,
-    loggedIn
+    loggedIn,
+    setshowWatchHistory
   } = useContext(UserContext)
 
   const navigate = useNavigate()
@@ -93,29 +94,28 @@ const Navbar = () => {
     <>
     <div className="nav-main">
     <Link to='/' className='home-link'>
-    <div className="nav-left">
-        
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCSPaFQq-Eyoa878pca55a046myfGy9iD2uQ&s" alt="" />
+    <div className="nav-left" onClick={()=> setshowWatchHistory(false)}>
+        <img src="/assets/main-logo.png" alt="" />
         <h4>STREAM IT</h4>
         
     </div>
     </Link>
-    <div className="nav-center">
+    {/* <div className="nav-center">
         <input type="text" placeholder='Search'/>
         <button>Search</button>
-    </div>
+    </div> */}
     <div className="nav-right">
         
-        {authenticated ? <img src="./assets/logout.png" id='logout'  onClick={handleLogoutClick} alt="" />: ''}
+        {authenticated ? <img src="/assets/logout.png" id='logout'  onClick={handleLogoutClick} alt="" />: ''}
         
         
-        { !authenticated ? <img src="./assets/register.png" id="register-logo" alt="" onClick={toggleSignUp} />: ''}
+        { !authenticated ? <img src="/assets/register.png" id="register-logo" alt="" onClick={toggleSignUp} />: ''}
 
         
-        { !authenticated ? <img src="./assets/enter.png" onClick={toggleSignIn} id='login-logo' alt="" /> : '' }
+        { !authenticated ? <img src="/assets/enter.png" onClick={toggleSignIn} id='login-logo' alt="" /> : '' }
 
         {
-          authenticated ? <img src="./assets/upload.png" alt="" id='video-icon' onClick={showUploadModal} /> : ""
+          authenticated ? <img src="/assets/upload.png" alt="" id='video-icon' onClick={showUploadModal} /> : ""
         }
         
 

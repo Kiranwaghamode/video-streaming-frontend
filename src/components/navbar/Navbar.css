@@ -1,11 +1,18 @@
+:root {
+    --back-color:  #ADBBDA;
+    --secondary-color: #3D52A0;
+    --third-color: #8692c4;
+  }
+
 .nav-main{
     width: 98vw;
     height: 10vh;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 50px;
+    
 }
 
 
@@ -26,13 +33,14 @@
     width: 35px;
     margin-left: 10px;
     cursor: pointer;
+    color: var(--back-color);
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
 }
 .nav-left h4{
     display: inline-block;
     cursor: pointer;
     text-decoration: none;
-
-    color: black;
 }
 
 .home-link{
@@ -66,6 +74,9 @@
     font-size: 25px;
     cursor: pointer;
     width: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+    padding: 3px;
 }
 
 #logout{
@@ -74,12 +85,17 @@
     cursor: pointer;
     width: 25px;
     object-fit: cover;
+    padding: 8px;
+    border-radius: 50%;
 }
 
 #login-logo{
     font-size: 28px;
     cursor: pointer;
     width: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-color);
+    padding: 5px;
 }
 
 .nav-right{
@@ -92,18 +108,21 @@
 
 .nav-right img{
     cursor: pointer;
+    border: 2px solid var(--secondary-color);
 }
 
 #profile-img{
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    /* height: 36px; */
     object-fit: cover;
     margin-right: 30px;
     border-radius: 50%;
 }
 
 #video-icon{
-    width: 40px;
+    width: 36px;
+    border-radius: 50%;
+    padding: 4px;
 }
   
   #modal {
@@ -143,3 +162,20 @@
     background-color: #45a049;
   }
   
+  @media (max-width: 480px){
+    .nav-left img{
+        width: 28px;
+    }
+    .nav-left h4{
+        font-size: 12px;
+    }
+    #profile-img{
+        width: 32px;
+    }
+    #logout{
+        width: 15px;
+    }
+    #video-icon{
+        width: 25px;
+    }
+  }

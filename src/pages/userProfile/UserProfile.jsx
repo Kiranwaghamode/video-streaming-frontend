@@ -5,6 +5,7 @@ import CoverImage from '../../components/coverimage/CoverImage'
 import Navbar from '../../components/navbar/Navbar'
 import Avatar from '../../components/avatar/Avatar'
 import Email from '../../components/email/Email'
+import Password from '../../components/changepassword/Password'
 
 
 const UserProfile = () => {
@@ -15,6 +16,7 @@ const UserProfile = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEmailModalOpen, setisEmailModalOpen] = useState(false);
+  const [changePassword, setchangePassword] = useState(false)
 
     const openModal = () => {
       setIsModalOpen(true);
@@ -31,6 +33,10 @@ const UserProfile = () => {
     const closeEmailModal = () => {
       setisEmailModalOpen(false);
     };
+
+    const openChangePassword = () =>{
+      setchangePassword(!changePassword)
+    }
 
 
 
@@ -59,7 +65,8 @@ const UserProfile = () => {
             <button className="user-profile-edit-button" onClick={openEmailModal} >Edit</button>
           </div>
         </div>
-      </div>
+    <button onClick={openChangePassword} className='change-password'>Change Password</button>
+    </div>
     </div>
     {
       showCoverImage ? <CoverImage setShowCoverImage={setShowCoverImage} /> : ""
@@ -70,6 +77,10 @@ const UserProfile = () => {
     {
       isEmailModalOpen ? <Email onRequestClose={closeEmailModal} /> : ""
     }
+    {
+      changePassword ? <Password openChangePassword={openChangePassword}/> : ''
+    }
+
     
 
 

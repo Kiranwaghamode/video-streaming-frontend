@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Comment.css'
-const Comment = ({content, id, deleteComment, isLoading}) => {
+import { UserContext } from '../../context/userContext'
+const Comment = ({content, id, deleteComment, isLoading, owner}) => {
   const [commentId, setcommentId] = useState('')
+  const [commentEligible, setcommentEligible] = useState(false)
+
+  const { currentUser } = useContext(UserContext)
 
   useEffect(() => {
     setcommentId(id)
+    if(currentUser._id === owner){
+      setcommentEligible(true)
+    }
+
   }, [])
   
 
@@ -13,7 +21,10 @@ const Comment = ({content, id, deleteComment, isLoading}) => {
     <div class="comment-card">
         <p class="comment-content">{content}</p>
         <div class="comment-actions">
-            <button class="delete-button" disabled={ isLoading ? true : false} onClick={()=> deleteComment(commentId)}>Delete</button>
+          { commentEligible ?
+          <button class="delete-button" disabled={ isLoading ? true : false} onClick={()=> deleteComment(commentId)}>Delete</button> : ''
+        }
+            
         </div>
     </div>
     

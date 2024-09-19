@@ -79,4 +79,23 @@
   .video-update-modal-cancel {
     background: #6c757d;
   }
+
+
+  @media (max-width: 480px){
+  .video-update-modal-container {
+    width: 70vw;
+  }
+
+  .video-update-modal-header{
+    width: 100%;
+    gap: 60px;
+  }
+  
+  .video-update-modal-header h2{
+    font-size: 17px;
+    text-align: center;
+  }
+
+
+  }
   

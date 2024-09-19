@@ -1,6 +1,6 @@
 .video-card-main{
     width: 220px;
-    height: 180px;
+    height: 150px;
     margin: 10px;
     border-radius: 10px;
     cursor: pointer;
@@ -46,5 +46,16 @@
 .video-card-main h5{
     margin: 0;
     font-size: 12px;
+}
+
+@media (max-width: 480px){
+    .video-card-main{
+        height: 180px;
+        width: 160px;
+    }
+    #thumbnail{
+        width: 160px;
+        height: 100px;
+    }
 }
 

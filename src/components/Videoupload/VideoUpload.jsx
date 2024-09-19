@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './VideoUpload.css'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { UserContext } from '../../context/userContext'
 
 const VideoUpload = ({closeModal}) => {
+
+
+  const { videoUploadFlag, setvideoUploadFlag } = useContext(UserContext)
+
 
   const [title, settitle] = useState('')
   const [description, setdescription] = useState('')
@@ -31,10 +36,13 @@ const VideoUpload = ({closeModal}) => {
              Authorization: `Bearer ${accessToken}`,
         }
         }, { withCredentials: true });
-
-      console.log(response.data)
-      closeModal()
-      setisLoading(false)
+      
+      if(response.data){
+        console.log(response.data)
+        closeModal()
+        setisLoading(false)
+        setvideoUploadFlag(!videoUploadFlag)
+      }
     } catch (error) {
       console.log("Video Upload Error: ", error)
       setisLoading(false)
@@ -49,9 +57,9 @@ const VideoUpload = ({closeModal}) => {
   return (
     <>
     <div className="modal">
-      <div className="modal-content">
+      <div className="upload-modal-content">
         <span className="close-btn" onClick={closeModal} >&times;</span>
-        <h2>Upload Video</h2>
+        <h2> Upload Video</h2>
         <form  onSubmit={handleVideoUpload}>
           <div className="form-group">
             <label htmlFor="title">Title</label>
@@ -62,6 +70,7 @@ const VideoUpload = ({closeModal}) => {
               required
             />
           </div>
+          
 
           <div className="form-group">
             <label htmlFor="description">Description</label>
@@ -88,14 +97,15 @@ const VideoUpload = ({closeModal}) => {
             <label htmlFor="video">Video File</label>
             <input
               type="file"
-              id="video"
+              id="video-input"
               accept="video/*"
               onChange={(e)=> setvideoFile(e.target.files[0])}
               required
             />
           </div>
 
-          <button type="submit" id='video-upload-button' disabled={isLoading ? true : false}>Upload Video</button>
+          <button type="submit" id='video-upload-button' disabled={isLoading ? true : false}>{ isLoading ? <><i class="fa fa-spin fa-solid fa-rotate-right"></i>      
+          uploading</>   : 'Upload Video'}</button>
         </form>
       </div>
     </div>

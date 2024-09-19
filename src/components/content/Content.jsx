@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Content.css'
 import Videocard from '../videoCard/Videocard'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../context/userContext'
 
 
 const Content = () => {
+
+
+    const {showWatchHistory, setshowWatchHistory, setvideoUploadFlag, videoUploadFlag, authenticated} = useContext(UserContext)
+    const [videoHistory, setvideoHistory] = useState([])
 
     const title = "how to make attractive thumbnail"
     const channel = "mortal"
@@ -16,9 +21,9 @@ const Content = () => {
     const [videos, setvideos] = useState([])
     
     useEffect(() => {
-      const accessToken = Cookies.get('accessToken')
       ;(async()=>{
         try {
+          const accessToken = Cookies.get('accessToken')
           const response = await axios.get(`${process.env.REACT_APP_API_URI}/videos/get-all-videos`, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -32,14 +37,41 @@ const Content = () => {
           console.log("ERROR", error)
         }
       })()
-    }, [])
+
+
+      ;(async()=>{
+
+        try {
+          const accessToken = Cookies.get('accessToken')
+          const response = await axios.get(`${process.env.REACT_APP_API_URI}/users/history`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          },  {withCredentials: true });
+          if(response.data){
+            setvideoHistory(response.data.data)
+          }
+
+        } catch (error) {
+          console.log("Error while fetching watch history!")
+        }
+      })()
+
+    }, [videoUploadFlag, authenticated])
     
 
 
   return (
     <>
+
+    { !showWatchHistory ?
     <div className="content-main">
-        
+      {
+      !authenticated ? <><div className="before-login"><h2>PLEASE LOGIN BEFORE USING THIS WEB APP</h2> 
+      <span>Email: test@gmail.com</span>
+      <span>Password: test</span></div>
+      </> : ''
+    }
         {
           videos.map((video)=>(
             <Link to={`/video/${video._id}`} id='video-link' >
@@ -47,11 +79,30 @@ const Content = () => {
             </Link>
           ))
         }
+        
+    </div> : ""
+  }
 
+    {
+      showWatchHistory ? 
+      <div className="content-main">
+        
+         {
+          videoHistory.map((video)=>(
+            <Link to={`/video/${video._id}`} id='video-link' >
+            <Videocard title={video.title} channel={channel} imgUrl={video?.thumbnail} avatar={avatar}/>
+            </Link>
+          ))
+        }
+        
+      </div>
+      : ""
 
+      
+    }
 
-    </div>
     
+
     
     </>
   )

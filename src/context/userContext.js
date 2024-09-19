@@ -14,10 +14,10 @@ export const UserProvider = ({ children }) => {
   });
 
   const [loggedIn, setloggedIn] = useState(false)
-
   const [authenticated, setAuthenticated] = useState(false);
-
   const [currentUser, setCurrentUser] = useState({})
+  const [showWatchHistory, setshowWatchHistory] = useState(false)
+  const [videoUploadFlag, setvideoUploadFlag] = useState(false)
 
  
   const userLogin = (user) =>{
@@ -54,7 +54,11 @@ export const UserProvider = ({ children }) => {
        setCurrentUser, 
        authenticated , 
        setAuthenticated,
-       userLogin
+       userLogin,
+       showWatchHistory, 
+       setshowWatchHistory,
+       videoUploadFlag,
+       setvideoUploadFlag
        }}>
       {children}
     </UserContext.Provider>

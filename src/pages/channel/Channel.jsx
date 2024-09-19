@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Channel.css'
 import Videocard from '../../components/videoCard/Videocard'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import Navbar from '../../components/navbar/Navbar'
 import Tweet from '../../components/tweet/Tweet'
 import Cookies from 'js-cookie'
@@ -19,6 +19,72 @@ const Channel = () => {
     const [userVideos, setuserVideos] = useState([])
     const [showSelected, setshowSelected] = useState(false)
     const [Tweets, setTweets] = useState([])
+    const [tweetEdit, settweetEdit] = useState(false)
+    const [User, setUser] = useState({})
+    const [tweetCreate, settweetCreate] = useState(false)
+    const [tweetContent, settweetContent] = useState('')
+    const [toggleSubscription, settoggleSubscription] = useState({})
+    let usereligible;
+    // let User;
+
+
+    const handleSubscription = async()=>{
+      try {
+        const accessToken = Cookies.get('accessToken')
+            const response = await axios.patch(`${process.env.REACT_APP_API_URI}/subscription/subscription-toggle/${User._id}`, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            },  {withCredentials: true });
+            if(response.data){
+              settoggleSubscription(response.data.data)
+            }
+      } catch (error) {
+        console.log("error while toggle the subscription")
+      }
+
+
+    }
+
+
+
+    const handleTweetCreation = async ()=>{
+      try {
+            const accessToken = Cookies.get('accessToken')
+            const response = await axios.post(`${process.env.REACT_APP_API_URI}/tweets/create-tweet/`,{content: tweetContent}, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            },  {withCredentials: true });
+            if(response.data){
+              settweetCreate(!tweetCreate)
+              settweetEdit(!tweetEdit)
+            }
+      } catch (error) {
+        console.log("Error while creating the tweet!")
+      }
+    }
+
+    useEffect(() => {
+      ;(async()=>{
+        try {
+          const accessToken = Cookies.get('accessToken')
+            const response = await axios.get(`${process.env.REACT_APP_API_URI}/tweets/get-user-tweets/${username}`, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            },  {withCredentials: true });
+            if(response.data){
+              setTweets(response.data.data)
+            }
+        } catch (error) {
+          console.log("Error while fetching tweets")
+        }
+    
+       })()
+    }, [tweetEdit])
+    
+
 
 
   useEffect(() => {
@@ -37,7 +103,7 @@ const Channel = () => {
             console.log("ERROR: ", error)
         }
     })()
-  }, [accessToken])
+  }, [accessToken, toggleSubscription])
   
   useEffect(() => {
    ;(async()=>{
@@ -55,41 +121,33 @@ const Channel = () => {
 
    })()
 
-   
    ;(async()=>{
+
     try {
       const accessToken = Cookies.get('accessToken')
-        const response = await axios.get(`${process.env.REACT_APP_API_URI}/tweets/get-user-tweets/${username}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URI}/users/get-user/${username}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         },  {withCredentials: true });
         if(response.data){
-          setTweets(response.data.data)
+          setUser(response.data.data.user)
         }
     } catch (error) {
-      console.log("Error while fetching tweets")
+      console.log("Error while fetching the user")
     }
 
 
-
-
    })()
-
-
   }, [])
   
-
-
-
-
-
-    const title = "how to make attractive thumbnail"
-    const channel = "vishwa mohan"
-    const image = "https://static-cse.canva.com/blob/1564545/1600w-wK95f3XNRaM.jpg"
-    const avatar = "https://yt3.googleusercontent.com/uclnYWF-f4jg3UvWLURUontXRPA5zINeaN-67uwZYrUq93xgDvEGUZkvDiYwjKEGB9f5lVxL8g=s120-c-k-c0x00ffffff-no-rj"
-
-
+  if(currentUser._id === User._id){
+    // setisUserEligible(true)
+    usereligible=true
+  }else{
+    // setisUserEligible(false)
+    usereligible=false
+  }
 
   return (
    <>
@@ -106,7 +164,7 @@ const Channel = () => {
           <h1 className="full-name">{data?.fullname}</h1>
           <h2 className="username">@{data?.username}</h2>
           <p className="subscribers">Subscribers: {data?.subscribersCount}</p>
-          <button className={`subscribe-button ${ data?.isSubscribed ? 'subscribed': ''}`}>{data?.isSubscribed ? 'Subscribed' : "Subscribe"}</button>
+          <button className={`subscribe-button ${ data?.isSubscribed ? 'subscribed': ''}`} onClick={handleSubscription} >{data?.isSubscribed ? 'Subscribed' : "Subscribe"}</button>
         </div>
       </div>
     </div>
@@ -121,7 +179,19 @@ const Channel = () => {
           <img src="/assets/twitter.png" alt="" />
             <h3>Tweets</h3>
           </div>
+          { usereligible ?
+          <div className="section " onClick={()=> settweetCreate(!tweetCreate)}>
+          <img src="/assets/social.png" alt="" id='add-tweet' />
+          <h3>Tweet+</h3>
+        </div>: ""}
         </div>
+        { tweetCreate ?
+          <div className="create-tweet">
+            <input type="text" onChange={(e)=> settweetContent(e.target.value)} />
+            <img src="/assets/next.png" alt="" onClick={handleTweetCreation} />
+          </div> : ""
+        }
+        
         <div className="show-videos">
           { !showSelected ?
             userVideos.map((video, index)=>(
@@ -132,7 +202,7 @@ const Channel = () => {
           }
           { showSelected ? 
             Tweets.map((tweet)=>(
-            <Tweet content={tweet.content} tweetId={tweet._id} key={tweet._id}/>
+            <Tweet content={tweet.content} tweetId={tweet._id} key={tweet._id} isUserEligible={usereligible} settweetEdit={settweetEdit} tweetEdit={tweetEdit}/>
            )) : ""
           }
         </div>

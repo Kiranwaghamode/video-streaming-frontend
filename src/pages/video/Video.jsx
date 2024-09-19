@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Video.css'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import ReactPlayer from 'react-player'
@@ -29,6 +29,8 @@ const Video = () => {
   const [commentDeleteError, setcommentDeleteError] = useState(false)
   const [isUpdateModalOpen, setisUpdateModalOpen] = useState(false)
   const [showDeleteModal, setshowDeleteModal] = useState(false)
+  const [videoOwner, setvideoOwner] = useState({})
+
   let isEligible = false;
 
 
@@ -174,16 +176,52 @@ const Video = () => {
       }
     })()
 
+
+    ;(async()=>{
+      try {
+        const accessToken = Cookies.get('accessToken')
+        const response = await axios.post(`${process.env.REACT_APP_API_URI}/users/push-to-watchHistory/${videoId}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },  {withCredentials: true });
+        if(response.data){
+        }
+      } catch (error) {
+        console.log("Error while pushing to watchhistory")
+      }
+
+
+    })()
+
+    
     
   }, [])
 
-
-  // useEffect(() => {
-
-  //   userEligible()
+  useEffect(() => {
+   if(obj && obj.owner){
+    ;(async()=>{
+      try {
+        const accessToken = Cookies.get('accessToken')
+        const response = await axios.get(`${process.env.REACT_APP_API_URI}/users/get-user-by-id/${obj.owner}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },  {withCredentials: true });
+        if(response.data){
+          console.log(response.data)
+          setvideoOwner(response.data.data.user)
+        }
+      } catch (error) {
+        console.log("error while getting user")
+      }
+    })()
+   }
+  }, [obj])
   
-  // }, [location.pathname])
-  
+
+
+
 
   useEffect(() => {
     
@@ -222,7 +260,7 @@ const Video = () => {
       </div>
       ) : ""}
       <div className="video-container">
-        <ReactPlayer className="video-player" url={obj?.videoFile} controls />
+        <ReactPlayer className="video-player" url={obj?.videoFile} controls id='video' />
       </div>
       <div className="video-details">
         <h1 className="video-title">{obj?.title}</h1>
@@ -231,6 +269,15 @@ const Video = () => {
           <button className="like-button" onClick={handleLikes} >{ isLiked ? "Liked" : "Like"}</button>
         </div>
       </div>
+      <Link to={`/user-channel/${videoOwner.username}`} className='Linkto' >
+      <div className="channel-details">
+        <img src={videoOwner.avatar} alt="" />    
+        <div className="sub-channel">
+          <span>@{videoOwner.username}</span>
+          <span>{videoOwner.fullname}</span>
+        </div>
+      </div>
+      </Link>
       <div className="comment-section">
         <h2 className="comment-title">Comments</h2>
         <form className="comment-form" >
@@ -246,7 +293,7 @@ const Video = () => {
         </form>
         {
           comments.map((comment)=>(
-            <Comment content={comment.content} id={comment._id} deleteComment={handleCommentDelete} isLoading={isLoading}  />
+            <Comment content={comment.content} owner={comment.owner} id={comment._id} deleteComment={handleCommentDelete} isLoading={isLoading}  />
           ))
         }
 

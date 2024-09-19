@@ -9,7 +9,7 @@ const VideoUpdate = ({ onClose, videoId }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [thumbnail, setThumbnail] = useState(null);
-
+  const [isLoading, setisLoading] = useState(false)
 
 
   const formData = new FormData();
@@ -21,6 +21,7 @@ const VideoUpdate = ({ onClose, videoId }) => {
   
   const updateVideo = async () =>{
     try {
+        setisLoading(true)
         const accessToken = Cookies.get('accessToken')
         const response = await axios.patch(`${process.env.REACT_APP_API_URI}/videos/update-video/${videoId}`, formData , {
           headers: {
@@ -31,12 +32,14 @@ const VideoUpdate = ({ onClose, videoId }) => {
         if(response.data){
             console.log(response.data)
             onClose()
+            setisLoading(false)
         }
 
 
 
     } catch (error) {
         console.log("UPDATE ERROR: ", error)
+        setisLoading(false)
     }
   }
 
@@ -47,7 +50,6 @@ const VideoUpdate = ({ onClose, videoId }) => {
       <div className="video-update-modal-container">
         <div className="video-update-modal-header">
           <h2>Update Video Details</h2>
-          <button className="video-update-modal-close" onClick={onClose}>×</button>
         </div>
         <div className="video-update-modal-body">
           <div className="video-update-modal-field">
@@ -81,7 +83,8 @@ const VideoUpdate = ({ onClose, videoId }) => {
           </div>
         </div>
         <div className="video-update-modal-footer">
-          <button className="video-update-modal-button" onClick={updateVideo}>Save</button>
+          <button className="video-update-modal-button" onClick={updateVideo}>{ isLoading ?<><i class="fa fa-spin fa-solid fa-rotate-right"></i>      
+            Loading</> : "Save"}</button>
           <button className="video-update-modal-button video-update-modal-cancel" onClick={onClose}>Cancel</button>
         </div>
       </div>
