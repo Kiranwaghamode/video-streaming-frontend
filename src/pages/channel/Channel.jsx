@@ -69,7 +69,7 @@ const Channel = () => {
       ;(async()=>{
         try {
           const accessToken = Cookies.get('accessToken')
-            const response = await axios.get(`${process.env.REACT_APP_API_URI}/tweets/get-user-tweets/${username}`,{}, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URI}/tweets/get-user-tweets/${username}`, {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
@@ -90,7 +90,7 @@ const Channel = () => {
   useEffect(() => {
     ;(async()=>{
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URI}/users/c/${username}`,{}, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URI}/users/c/${username}`, {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
                 },
@@ -108,7 +108,7 @@ const Channel = () => {
   useEffect(() => {
    ;(async()=>{
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URI}/videos/get-user-videos/${username}`,{}, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URI}/videos/get-user-videos/${username}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -125,7 +125,7 @@ const Channel = () => {
 
     try {
       const accessToken = Cookies.get('accessToken')
-        const response = await axios.get(`${process.env.REACT_APP_API_URI}/users/get-user/${username}`,{}, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URI}/users/get-user/${username}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
