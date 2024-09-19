@@ -10,12 +10,10 @@ import { UserContext } from '../../context/userContext'
 const Content = () => {
 
 
-    const {showWatchHistory, setshowWatchHistory, setvideoUploadFlag, videoUploadFlag, authenticated} = useContext(UserContext)
+    const {showWatchHistory, videoUploadFlag, authenticated} = useContext(UserContext)
     const [videoHistory, setvideoHistory] = useState([])
 
-    const title = "how to make attractive thumbnail"
     const channel = "mortal"
-    const image = "http://res.cloudinary.com/dxvmi7pp8/image/upload/v1718259084/mbpprbmnkqknzlqi7yfr.jpg"
     const avatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTC41flzoZC1EQy1ms3tEysWhuIJ_2EfXw3A&s"
 
     const [videos, setvideos] = useState([])

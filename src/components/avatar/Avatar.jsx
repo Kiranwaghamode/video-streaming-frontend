@@ -9,7 +9,7 @@ const Avatar = ({closeModal}) => {
     
     const [avatar, setavatar] = useState(null)
     const [isLoading, setisLoading] = useState(false)
-    const { setCurrentUser, currentUser } = useContext(UserContext)
+    const { setCurrentUser } = useContext(UserContext)
 
 
 
