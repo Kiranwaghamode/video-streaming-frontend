@@ -32,8 +32,6 @@ const Login = ({toggleSignIn, showErrorModal}) => {
  const handleLogin = async(e)=>{
   e.preventDefault();
 
-  
-
   try {
     setisLoading(true)
     const response = await axios.post(`${process.env.REACT_APP_API_URI}/users/login`, {
@@ -48,7 +46,6 @@ const Login = ({toggleSignIn, showErrorModal}) => {
       localStorage.setItem('currentUser', JSON.stringify(response.data.data.user));
       const user = response.data.data.user
       setCurrentUser(user);   
-      console.log(currentUser)   
       const accessToken = response.data.data.accessToken;
       const refreshToken = response.data.data.refreshToken;
 

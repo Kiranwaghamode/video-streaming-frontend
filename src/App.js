@@ -7,6 +7,10 @@ import Channel from './pages/channel/Channel';
 import Twitter from './components/twitter/Twitter';
 
 function App() {
+
+
+// https://nodebackend-tiv6.onrender.com/api/v1
+
   return (
     <>
     <BrowserRouter>

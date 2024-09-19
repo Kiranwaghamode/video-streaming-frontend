@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Twitter.css'
 import Tweet from '../tweet/Tweet'
 import Navbar from '../navbar/Navbar'
+import Cookies from 'js-cookie'
 import axios from 'axios'
 
 const Twitter = () => {

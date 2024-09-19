@@ -72,12 +72,13 @@ const Content = () => {
       <span>Password: test</span></div>
       </> : ''
     }
-        {
+        { authenticated ?
           videos.map((video)=>(
             <Link to={`/video/${video._id}`} id='video-link' >
             <Videocard title={video.title} channel={channel} imgUrl={video?.thumbnail} avatar={avatar}/>
             </Link>
           ))
+          : ""
         }
         
     </div> : ""

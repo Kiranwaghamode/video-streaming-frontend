@@ -25,7 +25,7 @@ const Menu = () => {
  <div className={`menu-main ${!showMenu ? 'hide-menu': ''} `}>
     <div id="you">
     <span id='head-you'>You</span>
-    <Link to={`/user-channel/${currentUser.username}`} className={`Linkto ${!authenticated ? 'click': ''}`} >
+    <Link to={authenticated ? `/user-channel/${currentUser.username}` : ''} className={`Linkto ${!authenticated ? 'click': ''}`} >
     <div className="sub-menu">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&s" alt="" />
         <span className='sub-menu-span'>Your Channel</span>

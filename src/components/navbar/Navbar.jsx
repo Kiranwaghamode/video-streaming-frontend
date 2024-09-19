@@ -5,6 +5,7 @@ import { UserContext } from '../../context/userContext'
 import Login from '../login/Login'
 import Register from '../register/Register'
 import Logout from '../logout/Logout'
+import Cookies from 'js-cookie'
 import axios from 'axios'
 import VideoUpload from '../Videoupload/VideoUpload'
 const Navbar = () => {
@@ -76,15 +77,30 @@ const Navbar = () => {
     setShowModal(false);
   };
 
+
+
   const handleLogout = async() => {
-    setShowModal(false);
-    const response = await axios.post(`${process.env.REACT_APP_API_URI}/users/logout`,{}, { withCredentials: true })
-    // console.log(currentUser)
-    
-    if(response){
-      setCurrentUser({})
-      setAuthenticated(false)
-      setloggedIn(false)
+    try {
+      
+      const accessToken = Cookies.get('accessToken')
+      const response = await axios.post(`${process.env.REACT_APP_API_URI}/users/logout`,{}, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      },  {withCredentials: true })
+      
+      if(response.data){
+        console.log(response.data)
+        setShowModal(false);
+        localStorage.removeItem("currentUser")
+        Cookies.remove('accessToken');  
+        Cookies.remove('refreshToken');
+        setAuthenticated(false)
+        setloggedIn(false)
+      }
+    } catch (error) {
+      console.log("Error while logout")
+      setShowModal(false);
     }
 
     
