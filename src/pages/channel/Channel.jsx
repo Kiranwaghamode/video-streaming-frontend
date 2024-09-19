@@ -82,7 +82,7 @@ const Channel = () => {
         }
     
        })()
-    }, [tweetEdit])
+    }, [tweetEdit, username])
     
 
 
@@ -103,7 +103,7 @@ const Channel = () => {
             console.log("ERROR: ", error)
         }
     })()
-  }, [accessToken, toggleSubscription])
+  }, [accessToken, toggleSubscription, username])
   
   useEffect(() => {
    ;(async()=>{
@@ -139,7 +139,7 @@ const Channel = () => {
 
 
    })()
-  }, [])
+  }, [accessToken, username])
   
   if(currentUser._id === User._id){
     // setisUserEligible(true)

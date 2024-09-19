@@ -88,7 +88,7 @@ const Tweet = ({content, tweetId, isUserEligible, settweetEdit, tweetEdit}) => {
             console.log("Error while fetching tweets!")
         }
       })()
-
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
 

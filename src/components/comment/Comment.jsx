@@ -12,7 +12,7 @@ const Comment = ({content, id, deleteComment, isLoading, owner}) => {
     if(currentUser._id === owner){
       setcommentEligible(true)
     }
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
 

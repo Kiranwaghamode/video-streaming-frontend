@@ -195,8 +195,7 @@ const Video = () => {
     })()
 
     
-    
-  }, [])
+  }, [videoId])
 
   useEffect(() => {
    if(obj && obj.owner){
@@ -241,7 +240,7 @@ const Video = () => {
       
     })()
 
-  }, [newComment, commentDelete])
+  }, [newComment, commentDelete, videoId])
   
 
   
