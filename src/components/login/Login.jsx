@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import './Login.css'
 import axios from 'axios';
 import { UserContext } from '../../context/userContext';
-import Cookies from 'js-cookie';
 
 const Login = ({toggleSignIn, showErrorModal}) => {
 
@@ -16,11 +15,8 @@ const Login = ({toggleSignIn, showErrorModal}) => {
 
 
   const { 
-    loggedIn, 
     setloggedIn , 
-    currentUser, 
     setCurrentUser,
-    userLogin
   } = useContext(UserContext)
 
   const [email, setEmail] = useState('');

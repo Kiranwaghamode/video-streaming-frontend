@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Video.css'
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import ReactPlayer from 'react-player'

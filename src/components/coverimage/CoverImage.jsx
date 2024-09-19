@@ -7,9 +7,8 @@ import Cookies from 'js-cookie';
 const CoverImage = ({setShowCoverImage}) => {
 
     const [coverImg, setcoverImg] = useState(null)
-    const [cookies, setcookies] = useState('')
     const [isLoading, setisLoading] = useState(false)
-    const { setCurrentUser, currentUser } = useContext(UserContext)
+    const { setCurrentUser } = useContext(UserContext)
 
     const handleCoverImage = async()=>{
         const formData = new FormData();

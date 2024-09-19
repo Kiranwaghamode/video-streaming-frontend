@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Menu.css'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/userContext'
-import Cookies from 'js-cookie'
-import axios from 'axios'
 
 const Menu = () => {
 

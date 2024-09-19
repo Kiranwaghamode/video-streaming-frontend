@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const Register = ({toggleSignUp}) => {
 
-  const { setloggedIn, currentUser, setCurrentUser } = useContext(UserContext)
+  const { setloggedIn } = useContext(UserContext)
 
   const [name, setname] = useState('')
   const [email, setemail] = useState('')
@@ -30,12 +30,7 @@ const Register = ({toggleSignUp}) => {
     formData.append('coverImage', coverImage);
 
 
-    function setCookie(name, value, days) {
-      const date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      const expires = "expires=" + date.toUTCString();
-      document.cookie = name + "=" + value + ";" + expires + ";path=/";
-  }
+ 
 
 
 

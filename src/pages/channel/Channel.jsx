@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Channel.css'
 import Videocard from '../../components/videoCard/Videocard'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Navbar from '../../components/navbar/Navbar'
 import Tweet from '../../components/tweet/Tweet'
 import Cookies from 'js-cookie'

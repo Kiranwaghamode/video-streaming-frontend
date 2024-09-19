@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 import { UserContext } from '../../context/userContext'
@@ -13,17 +13,13 @@ const Navbar = () => {
 
   const { 
     currentUser, 
-    setCurrentUser, 
     authenticated, 
     setAuthenticated,
     setloggedIn,
-    loggedIn,
     setshowWatchHistory
   } = useContext(UserContext)
 
   const navigate = useNavigate()
-  const [showRegister, setShowRegister] = useState(false)
-  const [isClosed, setisClosed] = useState(false)
   const [signIn, setsignIn] = useState(false)
   const [signUp, setsignUp] = useState(false)
   const [isuploadModalOpen, setisuploadModalOpen] = useState(false)
@@ -51,9 +47,6 @@ const Navbar = () => {
 
 
 
-  const toggleClosed = () =>{
-    setisClosed(!isClosed)
-  }
 
   const toggleSignIn = () =>{
     setsignIn(!signIn)
@@ -63,9 +56,7 @@ const Navbar = () => {
     setsignUp(!signUp)
   }
 
-  const toggleModal = () =>{
-    setShowRegister(!showRegister)
-  }
+ 
 
   const [showModal, setShowModal] = useState(false);
 
